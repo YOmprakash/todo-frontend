@@ -8,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/todos');
+        const response = await axios.get('https://todo-backend-cr6r.onrender.com/api/todos');
         setTodos(response.data);
       } catch (error) {
         console.error('Error fetching todos:', error);
@@ -24,7 +24,7 @@ const Home = () => {
     }
     try {
       const newTodo = { title: input, completed: false };
-      const response = await axios.post('http://localhost:5000/api/todos', newTodo);
+      const response = await axios.post('https://todo-backend-cr6r.onrender.com/api/todos', newTodo);
       setTodos([...todos, response.data]);
       setInput('');
     } catch (error) {
@@ -34,7 +34,7 @@ const Home = () => {
 
   const onDeleteTodo = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/todos/${id}`);
+      const response = await axios.delete(`https://todo-backend-cr6r.onrender.com/api/todos/${id}`);
       if (response.status === 200) {
         const newTodos = todos.filter((todo) => todo._id !== id);
         setTodos(newTodos);
@@ -51,7 +51,7 @@ const Home = () => {
         console.error('New title cannot be empty');
         return;
       }
-      const response = await axios.put(`http://localhost:5000/api/todos/${id}`, { title: newTitle });
+      const response = await axios.put(`https://todo-backend-cr6r.onrender.com/api/todos/${id}`, { title: newTitle });
       if (response.status === 200) {
         const updatedTodos = todos.map(todo => todo._id === id ? { ...todo, title: newTitle } : todo);
         setTodos(updatedTodos);

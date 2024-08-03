@@ -10,26 +10,21 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const endpoint = isRegistering ? 'http://localhost:4000/auth/register' : 'http://localhost:4000/auth/login';
+    const endpoint = isRegistering
+      ? 'https://todo-backend-cr6r.onrender.com/auth/register'
+      : 'https://todo-backend-cr6r.onrender.com/auth/login';
 
     try {
       const response = await axios.post(endpoint, {
         email: username,
         password
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
       });
 
       if (response.status === 200 || response.status === 201) {
-        const data = response.data;
-        console.log(isRegistering ? 'Registration successful:' : 'Login successful:', data);
-        // Navigate to the Home page after successful action
+        console.log(isRegistering ? 'Registration successful:' : 'Login successful:', response.data);
         navigate('/');
       } else {
-        const errorData = response.data;
-        console.error(isRegistering ? 'Registration failed:' : 'Login failed:', errorData);
+        console.error(isRegistering ? 'Registration failed:' : 'Login failed:', response.data);
       }
     } catch (error) {
       console.error('Error during action:', error);
