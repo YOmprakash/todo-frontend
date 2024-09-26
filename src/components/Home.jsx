@@ -105,7 +105,7 @@ const Home = () => {
           />
         </div>
         ) : todos.length === 0 ? (
-          <p className='text-center text-gray-500'>No todos found</p>
+          <p className='text-center text-gray-500'>Add Todo you want</p>
         ) : (
           todos.map((todo) => (
             <li key={todo._id} className='flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm'>
